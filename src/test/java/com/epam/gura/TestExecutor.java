@@ -29,15 +29,15 @@ public class TestExecutor extends BaseTest {
                 listPage.setAndVerifyBrandFilter());
     }
 
-   @Test
+    @Test
     public void weightRegulatorFilterTest() {
         HomePage homePage = new HomePage(setup);
         ProductListPage listPage = homePage.goToBakers();
         assertTrue("Products are not filtered by weight regulation",
                 listPage.setAndVerifyWeightRegulatorFilter());
     }
-    
-   @Test
+
+    @Test
     public void sortByNameAndPriceTest() {
         HomePage homePage = new HomePage(setup);
         ProductListPage listPage = homePage.goToRefrigerators();
@@ -50,8 +50,16 @@ public class TestExecutor extends BaseTest {
     }
 
     @Test
+    public void equalInfoTest() {
+        HomePage homePage = new HomePage(setup);
+        ProductListPage listPage = homePage.goToConditioners();
+        assertTrue("Product description is not equal to priceinfo.",
+                listPage.informationEqualsWithPrice());
+    }
+
+    @Test
     public void compareTest() {
-        
+
         HomePage homePage = new HomePage(setup);
         ProductListPage listPage = homePage.goToMicrowawes();
         ProductDetailsPage productPage = listPage.openProduct(0);
@@ -70,13 +78,4 @@ public class TestExecutor extends BaseTest {
                 comparePage.verifyColorOfDifferentValues());
     }
 
-  
-
-    @Test
-    public void equalInfoTest() {
-        HomePage homePage = new HomePage(setup);
-        ProductListPage listPage = homePage.goToConditioners();
-         assertTrue("Product description is not equal to priceinfo.",
-                listPage.informationEqualsWithPrice());
-    }
 }

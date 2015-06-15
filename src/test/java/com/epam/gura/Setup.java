@@ -20,17 +20,17 @@ public class Setup {
                 break;
             }
             case "Chrome": {
-                System.setProperty("webdriver.chrome.driver", "lib/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             }
             case "Opera": {
-                System.setProperty("webdriver.opera.driver", "lib/operadriver.exe");
+                System.setProperty("webdriver.opera.driver", "drivers/operadriver.exe");
                 driver = new OperaDriver();
                 break;
             }
             case "IE": {
-                System.setProperty("webdriver.ie.driver", "lib/IEDriverServer.exe");
+                System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
                 driver = new InternetExplorerDriver();
                 break;
             }
@@ -38,7 +38,7 @@ public class Setup {
                 throw new IllegalArgumentException("Incorrect browser name " + driverName);
             }
         }
-        driver.manage().window().maximize();
+       
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
