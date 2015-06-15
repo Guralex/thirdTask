@@ -76,8 +76,8 @@ public class ComparePage extends AbstractPage {
 
             if (!currentFieldProd1.equals(currentFieldProd2)) {
                 String linePosition = String.valueOf(i + 1);
-                String currentTR = String.format("(//table[@class='compare']//tr/td[not(@colspan)]/..)[%s]", linePosition);
-                if (!setup.getDriver().findElement(By.xpath(currentTR)).getAttribute("class").equals("different")) {
+                String row = String.format("(//table[@class='compare']//tr/td[not(@colspan)]/..)[%s]", linePosition);
+                if (!setup.getDriver().findElement(By.xpath(row)).getAttribute("class").equals("different")) {
                     return false;
                 }
             }

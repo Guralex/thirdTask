@@ -42,16 +42,16 @@ public class ProductDetailsPage extends AbstractPage {
     }
 
     public String configureDescriptionStringForConditioner(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(valuesOfDescriptionFields.get(0).getText());
-        sb.append(" установка; ");
-        sb.append(valuesOfDescriptionFields.get(1).getText());
-        sb.append("; ");
-        sb.append("мощность охлаждения ");
-        sb.append(valuesOfDescriptionFields.get(2).getText());
-        sb.append("; ");
-        sb.append("мощность обогрева ");
-        sb.append(valuesOfDescriptionFields.get(3).getText());
-        return sb.toString().replace("  ", " ").trim();
+        StringBuilder builder = new StringBuilder();
+        builder.append(valuesOfDescriptionFields.get(0).getText());
+        builder.append(" установка; ");
+        builder.append(valuesOfDescriptionFields.get(1).getText());
+        builder.append("; ");
+        builder.append("мощность охлаждения ");
+        builder.append(valuesOfDescriptionFields.get(2).getText());
+        builder.append("; ");
+        builder.append("мощность обогрева ");
+        builder.append(valuesOfDescriptionFields.get(3).getText());
+        return builder.toString().replace("  ", " ").trim();
     }
 }
