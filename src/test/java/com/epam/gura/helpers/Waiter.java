@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-public class WaiterHelper {
+public class Waiter {
   
 
     public static void waitVisibilityOf(Setup setup, WebElement webElement){

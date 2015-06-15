@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class HelperUtils {
+public class NamePattern {
    
 
     public static String nameOfProduct(String name) {

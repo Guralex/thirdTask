@@ -1,7 +1,7 @@
 package com.epam.gura.pageobject;
 
 import com.epam.gura.Setup;
-import com.epam.gura.helpers.HelperUtils;
+import com.epam.gura.helpers.NamePattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ComparePage extends AbstractPage {
+public class ProductComparePage extends AbstractPage {
  
     @FindBy(xpath = "//table[@class='compare']//tr/td[not(@colspan)][1]")
     private List<WebElement> descriptionFields;
@@ -22,7 +22,7 @@ public class ComparePage extends AbstractPage {
     @FindBy(xpath ="//table[@class='compare']//tr/td[3]")
     private List<WebElement> prod2Description;
 
-    public ComparePage(Setup setup) {
+    public ProductComparePage(Setup setup) {
         super(setup);
     }
 

@@ -6,17 +6,41 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.epam.gura.pageobject.ComparePage;
+import com.epam.gura.pageobject.ProductComparePage;
 import com.epam.gura.pageobject.HomePage;
-import com.epam.gura.pageobject.ListPage;
+import com.epam.gura.pageobject.ProductListPage;
 import com.epam.gura.pageobject.ProductDetailsPage;
 
-public class Main extends BaseTest {
-/*
+public class TestExecutor extends BaseTest {
+
+    @Test
+    public void priceFilterTest() {
+        HomePage homePage = new HomePage(setup);
+        ProductListPage listPage = homePage.goToWashingMashines();
+        assertTrue("Products are not filtered by price",
+                listPage.setAndVerifyPriceFilter());
+    }
+
+    @Test
+    public void brandFilterTest() {
+        HomePage homePage = new HomePage(setup);
+        ProductListPage listPage = homePage.goToBakers();
+        assertTrue("Products are not filtered by brand",
+                listPage.setAndVerifyBrandFilter());
+    }
+
+   @Test
+    public void weightRegulatorFilterTest() {
+        HomePage homePage = new HomePage(setup);
+        ProductListPage listPage = homePage.goToBakers();
+        assertTrue("Products are not filtered by weight regulation",
+                listPage.setAndVerifyWeightRegulatorFilter());
+    }
+    
    @Test
     public void sortByNameAndPriceTest() {
         HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToRefrigerators();
+        ProductListPage listPage = homePage.goToRefrigerators();
         listPage.clickOnSortByName();
         assertTrue("Products are not sorted by title ",
                 listPage.verifySortByProductName());
@@ -29,7 +53,7 @@ public class Main extends BaseTest {
     public void compareTest() {
         
         HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToMicrowawes();
+        ProductListPage listPage = homePage.goToMicrowawes();
         ProductDetailsPage productPage = listPage.openProduct(0);
         Map<String, String> firstDescription = productPage
                 .descriptionOfProduct();
@@ -38,7 +62,7 @@ public class Main extends BaseTest {
         Map<String, String> secondDescription = productPage
                 .descriptionOfProduct();
         productPage.goToListPage();
-        ComparePage comparePage = listPage.addtoCompare();
+        ProductComparePage comparePage = listPage.addtoCompare();
         assertTrue("Properties are not displayed on compare page",
                 comparePage.verifyCompareOfProducts(firstDescription,
                         secondDescription));
@@ -46,35 +70,13 @@ public class Main extends BaseTest {
                 comparePage.verifyColorOfDifferentValues());
     }
 
-   @Test
-    public void priceFilterTest() {
-        HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToWashingMashines();
-        assertTrue("Products are not filtered by price",
-                listPage.setAndVerifyPriceFilter());
-    }*/
-
-    @Test
-    public void brandFilterTest() {
-        HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToBakers();
-        assertTrue("Products are not filtered by brand",
-                listPage.setAndVerifyBrandFilter());
-    }
-
-  /*  @Test
-    public void weightRegulatorFilterTest() {
-        HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToBakers();
-        assertTrue("Products are not filtered by weight regulation",
-                listPage.setAndVerifyWeightRegulatorFilter());
-    }
+  
 
     @Test
     public void equalInfoTest() {
         HomePage homePage = new HomePage(setup);
-        ListPage listPage = homePage.goToConditioners();
+        ProductListPage listPage = homePage.goToConditioners();
          assertTrue("Product description is not equal to priceinfo.",
                 listPage.informationEqualsWithPrice());
-    }*/
+    }
 }

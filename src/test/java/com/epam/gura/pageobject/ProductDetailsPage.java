@@ -36,9 +36,9 @@ public class ProductDetailsPage extends AbstractPage {
         return description;
     }
 
-    public ListPage goToListPage(){
+    public ProductListPage goToListPage(){
         breadcrumbsToListPage.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
 
     public String configureDescriptionStringForConditioner(){

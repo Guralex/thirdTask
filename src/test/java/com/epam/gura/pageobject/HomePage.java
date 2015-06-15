@@ -29,24 +29,24 @@ public class HomePage extends AbstractPage {
         setup.getDriver().get("http://pn.com.ua/");
     }
 
-    public ListPage goToRefrigerators() {
+    public ProductListPage goToRefrigerators() {
     	refrigerators.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
-    public ListPage goToMicrowawes() {
+    public ProductListPage goToMicrowawes() {
     	microwaves.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
-    public ListPage goToWashingMashines() {
+    public ProductListPage goToWashingMashines() {
     	washingMachines.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
-    public ListPage goToBakers() {
+    public ProductListPage goToBakers() {
     	bakers.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
-    public ListPage goToConditioners() {
+    public ProductListPage goToConditioners() {
     	conditioners.click();
-        return new ListPage(setup);
+        return new ProductListPage(setup);
     }
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class PricePage extends AbstractPage {
+public class ProductPricePage extends AbstractPage {
 
 	@FindBy(xpath = "//input[@id='edit-name-1']")
 	private WebElement searchField;
@@ -13,7 +13,7 @@ public class PricePage extends AbstractPage {
 	@FindBy(xpath ="//tr[contains(@class,'price_table_tr')][1]//a[@class='description-link']")
 	private WebElement descriptionOfFirstProduct;
 
-    public PricePage(Setup setup) {
+    public ProductPricePage(Setup setup) {
         super(setup);
     }
 

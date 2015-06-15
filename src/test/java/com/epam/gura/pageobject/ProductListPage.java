@@ -1,7 +1,7 @@
 package com.epam.gura.pageobject;
 
 import com.epam.gura.Setup;
-import com.epam.gura.helpers.HelperUtils;
+import com.epam.gura.helpers.NamePattern;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,8 +9,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ListPage extends AbstractPage {
+public class ProductListPage extends AbstractPage {
 
+    @FindBy(xpath = "//a[text()='Zelmer']")
+    private WebElement brandFilter;
+
+    @FindBy(xpath = "//a[text()='Регулировка веса']")
+    private WebElement weightRegulatorFilter;
+    
     @FindBy(xpath = "//div[@class='description']")
     private List<WebElement> listOfDescriptions;
 
@@ -41,24 +47,19 @@ public class ListPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='panel corner criteria']/div[@class='group'][2]/div[@class='is_empty_items']/a[2]")
     private WebElement maxPriceFilter;
 
-    @FindBy(xpath = "//a[text()='Zelmer']")
-    private WebElement brandFilter;
-
-    @FindBy(xpath = "//a[text()='Регулировка веса']")
-    private WebElement weightRegulatorFilter;
 
 
 
-    public ListPage(Setup setup) {
+    public ProductListPage(Setup setup) {
         super(setup);
     }
 
-    public ListPage clickOnSortByPrice() {
+    public ProductListPage clickOnSortByPrice() {
         sortByPrice.click();
         return this;
     }
 
-    public ListPage clickOnSortByName() {
+    public ProductListPage clickOnSortByName() {
         sortByName.click();
         return this;
     }
@@ -88,13 +89,13 @@ public class ListPage extends AbstractPage {
         return true;
     }
 
-    public ComparePage addtoCompare() {
+    public ProductComparePage addtoCompare() {
         wait.waitVisibilityOfAll(setup, listOfAddToCompareLinks);
         listOfAddToCompareLinks.get(0).click();
         listOfAddToCompareLinks.get(1).click();
         wait.waitVisibilityOf(setup, listOfCompareLinks.get(0));
         listOfCompareLinks.get(0).click();
-        return new ComparePage(setup);
+        return new ProductComparePage(setup);
     }
 
     public ProductDetailsPage openProduct(int i) {
@@ -102,15 +103,15 @@ public class ListPage extends AbstractPage {
         return new ProductDetailsPage(setup);
     }
 
-    public PricePage openPrice() {
+    public ProductPricePage openPrice() {
         pricesLink.click();
-        return new PricePage(setup);
+        return new ProductPricePage(setup);
     }
 
     public ProductDetailsPage openProductInPrice(int index) {
-        String productName = HelperUtils.nameOfProduct(listOfProducts
+        String productName = NamePattern.nameOfProduct(listOfProducts
                 .get(index).getText());
-        PricePage pricePage = openPrice();
+        ProductPricePage pricePage = openPrice();
         pricePage.performSerachFor(productName);
         return pricePage.openDescriptionOfFirstProduct();
     }
@@ -138,8 +139,7 @@ public class ListPage extends AbstractPage {
         brandFilter.click();
         for (int i = 0; i < listOfProducts.size(); i++) {
            System.out.println( listOfProducts.get(i).getText());
-            if (listOfProducts.get(i).getAttribute("innerHTML")
-                    .contains(brandFilter.getAttribute("innerHTML"))) {
+            if (listOfProducts.get(i).getText().contains(brandFilter.getText())) {
                 continue;
             } else {
                 return false;
@@ -150,9 +150,10 @@ public class ListPage extends AbstractPage {
 
     public boolean setAndVerifyWeightRegulatorFilter() {
         weightRegulatorFilter.click();
-        for (int i = 0; i < listOfDescriptions.size(); i++) {
-                System.out.println(listOfDescriptions.get(i).getText());
-                if (listOfDescriptions.get(i).getText().contains("Регулировка веса")) {
+        for (int i = 0; i < listOfDescriptions.size()-2; i++) {
+                System.out.println(listOfDescriptions.get(i).getText()+"----"+weightRegulatorFilter.getText());
+                if (listOfDescriptions.get(i).getText().contains(weightRegulatorFilter.getText())) {
+                  
                 continue;
             } else {
                 return false;
